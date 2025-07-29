@@ -4,7 +4,19 @@
 void showMenu();
 void showChoice();
 
+// Khai báo hàm các chức năng
+void cn1();
+void cn2();
+void cn3();
+void cn4();
+void cn5();
+void cn6();
+void cn7();
+void cn8();
+void cn9();
+void cn10();
 
+// Hàm Chính Bắt Đầu Chạy Chương Trình
 int main() {
     showChoice();
     return 0;
@@ -35,34 +47,34 @@ void showChoice() {
         scanf("%d", &choice);
         switch(choice) {
             case 1:
-                printf(">> Dang xu ly chuc nang 1: Kiem tra so nguyen...\n");
+                cn1();
                 break;
             case 2:
-                printf(">> Dang xu ly chuc nang 2: Tim Uoc so chung va Boi so chung...\n");
+                cn2();
                 break;
             case 3:
-                printf(">> Dang xu ly chuc nang 3: Tinh tien Karaoke...\n");
+                cn3();
                 break;
             case 4:
-                printf(">> Dang xu ly chuc nang 4: Tinh tien dien...\n");
+                cn4();
                 break;
             case 5:
-                printf(">> Dang xu ly chuc nang 5: Doi tien...\n");
+                cn5();
                 break;
             case 6:
-                printf(">> Dang xu ly chuc nang 6: Tinh lai suat vay ngan hang...\n");
+                cn6();
                 break;
             case 7:
-                printf(">> Dang xu ly chuc nang 7: Vay tien mua xe...\n");
+                cn7();
                 break;
             case 8:
-                printf(">> Dang xu ly chuc nang 8: Sap xep thong tin sinh vien...\n");
+                cn8();
                 break;
             case 9:
-                printf(">> Dang xu ly chuc nang 9: Tro choi FPOLY-LOTT...\n");
+                cn9();
                 break;
             case 10:
-                printf(">> Dang xu ly chuc nang 10: Tinh toan phan so...\n");
+                cn10();
                 break;
             case 0:
                 printf(">> Thoat chuong trinh. Tam biet!\n");
@@ -71,4 +83,44 @@ void showChoice() {
                 printf(">> Lua chon khong hop le! Vui long nhap lai.\n");
         }
     } while (choice != 0);
+}
+
+void cn1() {
+    printf(">> Dang xu ly chuc nang 1: Kiem tra so nguyen...\n");
+}
+
+void cn2() {
+    printf(">> Dang xu ly chuc nang 2: Tim Uoc so chung va Boi so chung...\n");
+}
+
+void cn3() {
+    printf(">> Dang xu ly chuc nang 3: Tinh tien Karaoke...\n");
+}
+
+void cn4() {
+    printf(">> Dang xu ly chuc nang 4: Tinh tien dien...\n");
+}
+
+void cn5() {
+    printf(">> Dang xu ly chuc nang 5: Doi tien...\n");
+}
+
+void cn6() {
+    printf(">> Dang xu ly chuc nang 6: Tinh lai suat vay ngan hang...\n");
+}
+
+void cn7() {
+    printf(">> Dang xu ly chuc nang 7: Vay tien mua xe...\n");
+}
+
+void cn8() {
+    printf(">> Dang xu ly chuc nang 8: Sap xep thong tin sinh vien...\n");
+}
+
+void cn9() {
+    printf(">> Dang xu ly chuc nang 9: Tro choi FPOLY-LOTT...\n");
+}
+
+void cn10() {
+    printf(">> Dang xu ly chuc nang 10: Tinh toan phan so...\n");
 }
