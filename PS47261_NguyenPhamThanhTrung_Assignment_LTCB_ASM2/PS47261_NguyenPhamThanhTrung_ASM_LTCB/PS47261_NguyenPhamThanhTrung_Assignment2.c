@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 // Khai báo hàm
 void showMenu();
@@ -17,7 +18,7 @@ void cn9();
 void cn10();
 
 // Khai báo hàm xử lý các chức năng
-void soNguyen();
+bool soNguyen(float num);
 
 // Hàm Chính Bắt Đầu Chạy Chương Trình
 int main() {
@@ -90,7 +91,14 @@ void showChoice() {
 
 void cn1() {
     printf(">> Dang xu ly chuc nang 1: Kiem tra so nguyen...\n");
-    soNguyen();
+    float num;
+    scanf("%f", &num);
+    if (soNguyen(num)) {
+        printf(">> %.2f la so nguyen.\n", num);
+    } else {
+        printf(">> %.2f khong phai la so nguyen.\n", num);
+    }
+
 }
 
 void cn2() {
@@ -131,14 +139,11 @@ void cn10() {
 
 
 // Hàm xử lý tính toán các chức năng của chương trình
-void soNguyen() {
-    int num;
-    printf("Nhap mot so nguyen: ");
-    scanf("%d", &num);
+bool soNguyen(float num) {
     if ( num == (int)num ) {
-        printf("Day la so nguyen.\n");
+        return true;
     }
     else {
-        printf("Day khong phai la so nguyen.\n");
+        return false;
     }
 }
