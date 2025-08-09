@@ -1,32 +1,31 @@
 #include <stdio.h>
 
-int main() {
-    int gioBatDau, gioKetThuc;
-    int soGio;
-    float thanhTien = 0;
+int main () {
+  // Bài 2: Tìm giá trị lớn nhất và nhỏ nhất trong mảng
+  int n;
+  printf("Nhap so phan tu cua mang: ");
+  scanf("%d", &n);
+  int arr[n];
+  for (int i = 0; i < n; i++) {
+    printf("Nhap a[%d]: ", i);
+    scanf("%d", &arr[i]);
+  }
 
-    printf("Nhap gio bat dau (12-23): ");
-    scanf("%d", &gioBatDau);
-    printf("Nhap gio ket thuc (12-23): ");
-    scanf("%d", &gioKetThuc);
-
-    soGio = gioKetThuc - gioBatDau;
-
-    if (gioBatDau < 12 || gioKetThuc > 23 || gioBatDau >= gioKetThuc) {
-        printf("Khong hop le!\n");
-        return 0;
-    }
-
-    if (soGio <= 3) {
-        thanhTien = soGio * 150000;
+  int max, min;
+  for (int i = 0; i < n; i++) {
+    if (i == 0) {
+      max = arr[i];
+      min = arr[i];
     } else {
-        thanhTien = 3 * 150000 + (soGio - 3) * 150000 * 0.7;
+      if (arr[i] > max) {
+        max = arr[i];
+      }
+      if (arr[i] < min) {
+        min = arr[i];
+      }
     }
-
-    if (gioBatDau >= 14 && gioBatDau <= 17) {
-        thanhTien *= 0.9;
-    }
-
-    printf("Tong tien: %.0f VND\n", thanhTien);
-    return 0;
+  }
+  printf("Gia tri lon nhat trong mang la: %d\n", max);
+  printf("Gia tri nho nhat trong mang la: %d\n", min);
+  return 0;
 }

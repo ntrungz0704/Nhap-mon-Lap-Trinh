@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdbool.h>
+<<<<<<< HEAD
+=======
+#include <math.h>
+>>>>>>> 2615dacd16197d90edcf8d0fd758e7f552ed28b0
 
 // Khai báo hàm
 void showMenu();
@@ -18,7 +22,18 @@ void cn9();
 void cn10();
 
 // Khai báo hàm xử lý các chức năng
+<<<<<<< HEAD
 bool soNguyen(float num);
+=======
+// Hàm cn 1
+bool soNguyen(float num);
+bool soChinhPhuong(int num);
+bool soNguyenTo(int num);
+
+// Hàm cn 2
+void uocSoChung(int a, int b);
+void boiSoChung(int a, int b);
+>>>>>>> 2615dacd16197d90edcf8d0fd758e7f552ed28b0
 
 // Hàm Chính Bắt Đầu Chạy Chương Trình
 int main() {
@@ -26,7 +41,7 @@ int main() {
     return 0;
 }
 
-// Chức năng của hàm
+// Chức năng của hàm Menu
 void showMenu() {
     printf("\n============== MENU CHUONG TRINH ==============\n");
     printf("| 1. Kiem tra so nguyen                         |\n");
@@ -44,6 +59,7 @@ void showMenu() {
     printf("Moi ban chon chuc nang (0 - 10): ");
 }
 
+// Hàm xử lý lựa chọn
 void showChoice() {
     int choice;
     do {
@@ -92,13 +108,30 @@ void showChoice() {
 void cn1() {
     printf(">> Dang xu ly chuc nang 1: Kiem tra so nguyen...\n");
     float num;
+<<<<<<< HEAD
+=======
+    printf("Nhap mot so: ");
+>>>>>>> 2615dacd16197d90edcf8d0fd758e7f552ed28b0
     scanf("%f", &num);
     if (soNguyen(num)) {
         printf(">> %.2f la so nguyen.\n", num);
     } else {
         printf(">> %.2f khong phai la so nguyen.\n", num);
     }
+<<<<<<< HEAD
 
+=======
+    if (soChinhPhuong((int)num)) {
+        printf(">> %d la so chinh phuong.\n", (int)num);
+    } else {
+        printf(">> %d khong phai la so chinh phuong.\n", (int)num);
+    }
+    if (soNguyenTo((int)num)) {
+        printf(">> %d la so nguyen to.\n", (int)num);
+    } else {
+        printf(">> %d khong phai la so nguyen to.\n", (int)num);
+    }
+>>>>>>> 2615dacd16197d90edcf8d0fd758e7f552ed28b0
 }
 
 void cn2() {
@@ -139,11 +172,56 @@ void cn10() {
 
 
 // Hàm xử lý tính toán các chức năng của chương trình
+<<<<<<< HEAD
 bool soNguyen(float num) {
     if ( num == (int)num ) {
         return true;
     }
     else {
+=======
+
+// SN
+bool soNguyen(float num) {
+    if (num == (int)num) {
+        return true;
+    } else {
+>>>>>>> 2615dacd16197d90edcf8d0fd758e7f552ed28b0
         return false;
     }
+}
+// SCP
+bool soChinhPhuong(int num) {
+    if (num < 0) {
+        return false;
+    }
+    else {
+        int root = (int)sqrt(num);
+        return (root * root == num);
+    }
+}
+// SNT
+bool soNguyenTo(int num) {
+    if (num < 2) {
+        return false;
+    }
+    for (int i = 2; i <= sqrt(num); i++) {
+        if (num % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+//
+void uocSoChung(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+void boiSoChung(int a, int b) {
+    return (a * b) / uocSoChung(a, b);
 }
