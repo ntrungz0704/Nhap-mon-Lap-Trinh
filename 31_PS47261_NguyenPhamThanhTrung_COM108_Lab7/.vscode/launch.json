@@ -8,8 +8,13 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
+<<<<<<< HEAD
       "cwd": "f:/Nhập môn lập trình - Bình/31_PS47261_NguyenPhamThanhTrung_COM108_Lab7",
       "program": "f:/Nhập môn lập trình - Bình/31_PS47261_NguyenPhamThanhTrung_COM108_Lab7/build/Debug/outDebug",
+=======
+      "cwd": "d:/Nhap-mon-Lap-Trinh/31_PS47261_NguyenPhamThanhTrung_COM108_Lab7",
+      "program": "d:/Nhap-mon-Lap-Trinh/31_PS47261_NguyenPhamThanhTrung_COM108_Lab7/build/Debug/outDebug",
+>>>>>>> 4ef3c68374ff6e4b30c4235f7b00ee13e407f7ee
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
