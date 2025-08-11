@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "f:/Nhập môn lập trình - Bình/PS47261_NguyenPhamThanhTrung_Assignment_LTCB_ASM2/PS47261_NguyenPhamThanhTrung_ASM_LTCB",
+      "program": "f:/Nhập môn lập trình - Bình/PS47261_NguyenPhamThanhTrung_Assignment_LTCB_ASM2/PS47261_NguyenPhamThanhTrung_ASM_LTCB/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdbool.h>
-<<<<<<< HEAD
+
 =======
 #include <math.h>
->>>>>>> 2615dacd16197d90edcf8d0fd758e7f552ed28b0
+
 
 // Khai báo hàm
 void showMenu();
@@ -22,9 +22,9 @@ void cn9();
 void cn10();
 
 // Khai báo hàm xử lý các chức năng
-<<<<<<< HEAD
+
 bool soNguyen(float num);
-=======
+
 // Hàm cn 1
 bool soNguyen(float num);
 bool soChinhPhuong(int num);
@@ -33,7 +33,7 @@ bool soNguyenTo(int num);
 // Hàm cn 2
 void uocSoChung(int a, int b);
 void boiSoChung(int a, int b);
->>>>>>> 2615dacd16197d90edcf8d0fd758e7f552ed28b0
+
 
 // Hàm Chính Bắt Đầu Chạy Chương Trình
 int main() {
@@ -108,19 +108,16 @@ void showChoice() {
 void cn1() {
     printf(">> Dang xu ly chuc nang 1: Kiem tra so nguyen...\n");
     float num;
-<<<<<<< HEAD
-=======
+
     printf("Nhap mot so: ");
->>>>>>> 2615dacd16197d90edcf8d0fd758e7f552ed28b0
+
     scanf("%f", &num);
     if (soNguyen(num)) {
         printf(">> %.2f la so nguyen.\n", num);
     } else {
         printf(">> %.2f khong phai la so nguyen.\n", num);
     }
-<<<<<<< HEAD
 
-=======
     if (soChinhPhuong((int)num)) {
         printf(">> %d la so chinh phuong.\n", (int)num);
     } else {
@@ -131,7 +128,6 @@ void cn1() {
     } else {
         printf(">> %d khong phai la so nguyen to.\n", (int)num);
     }
->>>>>>> 2615dacd16197d90edcf8d0fd758e7f552ed28b0
 }
 
 void cn2() {
@@ -172,20 +168,19 @@ void cn10() {
 
 
 // Hàm xử lý tính toán các chức năng của chương trình
-<<<<<<< HEAD
+
 bool soNguyen(float num) {
     if ( num == (int)num ) {
         return true;
     }
-    else {
-=======
+    else { }
 
 // SN
 bool soNguyen(float num) {
     if (num == (int)num) {
         return true;
     } else {
->>>>>>> 2615dacd16197d90edcf8d0fd758e7f552ed28b0
+
         return false;
     }
 }
