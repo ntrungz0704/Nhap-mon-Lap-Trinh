@@ -2,6 +2,9 @@
 #include <stdbool.h>
 #include <math.h>
 #include <time.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
 
 // Khai báo hàm menu
 void showMenu();
@@ -19,14 +22,34 @@ void cn8();
 void cn9();
 void cn10();
 
+typedef struct {
+    char ten[50];
+    float diem;
+} SinhVien;
+
+typedef struct {
+    int tu, mau;
+} PhanSo;
+
+PhanSo rutGon(PhanSo ps) {
+    int a = ps.tu, b = ps.mau;
+    while (b != 0) {
+        int temp = a % b;
+        a = b;
+        b = temp;
+    }
+    ps.tu /= a;
+    ps.mau /= a;
+    return ps;
+}
 // Hàm kiểm tra
 bool soNguyen(float num);
 bool soChinhPhuong(int num);
 bool soNguyenTo(int num);
 
 // Hàm tính toán
-int uocSoChung(int a, int b);
-int boiSoChung(int a, int b);
+int uscln(int a, int b);
+int bscnn(int a, int b);
 
 // Main
 int main() {
@@ -103,15 +126,14 @@ void cn1() {
 
 void cn2() {
     printf(">> Dang xu ly chuc nang 2: Tim Uoc so chung va Boi so chung...\n");
-    int a, b;
-    printf("Nhap so thu nhat: "); scanf("%d", &a);
-    printf("Nhap so thu hai: "); scanf("%d", &b);
+    int x, y;
+    printf("Nhap so thu nhat: ");
+    scanf("%d", &x);
+    printf("Nhap so thu hai: ");
+    scanf("%d", &y);
 
-    int gcd = uocSoChung(a, b);
-    int lcm = boiSoChung(a, b);
-
-    printf("Uoc so chung lon nhat: %d\n", gcd);
-    printf("Boi so chung nho nhat: %d\n", lcm);
+    printf("Uoc so chung lon nhat (USCLN) cua %d va %d la: %d\n", x, y, uscln(x, y));
+    printf("Boi so chung nho nhat (BSCNN) cua %d va %d la: %d\n", x, y, bscnn(x, y));
 }
 
 void cn3() {
@@ -218,63 +240,113 @@ void cn6() {
 }
 void cn7() {
   printf(">> Dang xu ly chuc nang 7: Vay tien mua xe...\n");
-  double tienduocVay = 500000000; // 500 triệu
-  int namVay = 24;
-  double laiNam = 7.2; // %
-  double phanTramVay;
+  float phanTramTraTruoc;
+  printf("Nhap vao so phan tram vay to da (vi du: 80 = tra truoc 20%%): ");
+  scanf("%f", &phanTramTraTruoc);
 
-  printf("Nhap vao so phan tram vay toi da: ");
-  scanf("%lf", &phanTramVay);
+  float tongVay = 500000000; // 500 triệu
+  int thoiGianVay = 24;      // 24 tháng
+  float laiSuat = 0.072;     // 7.2%/năm
 
-  double soTienVay = tienduocVay * (phanTramVay / 100.0);
-  double traTruoc = tienduocVay - soTienVay;
+  // Số tiền vay thực tế
+  float soTienVay = tongVay * phanTramTraTruoc / 100;
+  float gocPhaiTra = soTienVay / thoiGianVay;
+  float soTienConLai = soTienVay;
+  printf("%-5s %-15s %-15s %-20s\n", "Thang", "Goc phai tra", "Lai phai tra", "So tien con lai");
 
-  int soThang = namVay * 12;
-  double laiThang = (laiNam / 100.0) / 12.0;
-
-  // Công thức EMI
-  double EMI = (soTienVay * laiThang * pow(1 + laiThang, soThang)) / (pow(1 + laiThang, soThang) - 1);
-
-  printf("\nSo tien tra truoc: %.0f VND", traTruoc);
-  printf("\nSo tien phai tra hang thang: %.0f VND", EMI);
+  for (int i = 1; i <= thoiGianVay; i++) {
+      float laiPhaiTra = soTienConLai * (laiSuat / 12);
+      soTienConLai -= gocPhaiTra;
+      printf("%-5d %-15.0f %-15.0f %-20.0f\n", i, gocPhaiTra, laiPhaiTra, soTienConLai);
+    }
 }
-void cn8() { printf(">> Dang xu ly chuc nang 8: Sap xep thong tin sinh vien...\n"); }
+void cn8() {
+  printf(">> Dang xu ly chuc nang 8: Sap xep thong tin sinh vien...\n");
+int n;
+    printf("Nhap so luong sinh vien: ");
+    scanf("%d", &n);
+
+    SinhVien sv[n];
+
+    for (int i = 0; i < n; i++) {
+        printf("Nhap ten sinh vien %d: ", i + 1);
+        scanf(" %[^\n]", sv[i].ten);
+        printf("Nhap diem: ");
+        scanf("%f", &sv[i].diem);
+    }
+
+    // Sắp xếp giảm dần theo điểm
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (sv[i].diem < sv[j].diem) {
+                SinhVien temp = sv[i];
+                sv[i] = sv[j];
+                sv[j] = temp;
+            }
+        }
+    }
+
+    printf("\n%-20s %-10s %-15s\n", "Ten", "Diem", "Hoc luc");
+    for (int i = 0; i < n; i++) {
+        char hocLuc[20];
+        if (sv[i].diem >= 8) strcpy(hocLuc, "Xuat sac");
+        else if (sv[i].diem >= 6.5) strcpy(hocLuc, "Gioi");
+        else if (sv[i].diem >= 5) strcpy(hocLuc, "Trung binh");
+        else strcpy(hocLuc, "Yeu");
+        printf("%-20s %-10.1f %-15s\n", sv[i].ten, sv[i].diem, hocLuc);
+    }
+}
 void cn9() {
-  printf(">> Dang xu ly chuc nang 9: Tro choi FPOLY-LOTT...\n");
-  int user1, user2;
-  int sys1, sys2;
-  int match = 0;
+  int so1, so2;
+    printf("Nhap 2 so tu ban phim (1-15): ");
+    scanf("%d %d", &so1, &so2);
 
-  srand(time(NULL)); // Khởi tạo seed cho rand()
+    srand(time(NULL));
+    int g1 = rand() % 15 + 1;
+    int g2 = rand() % 15 + 1;
 
-  // Nhập 2 số từ 01-15
-  printf("Nhap so thu nhat (1-15): ");
-  scanf("%d", &user1);
-  printf("Nhap so thu hai (1-15): ");
-  scanf("%d", &user2);
+    printf("So trung giai: %d - %d\n", g1, g2);
 
-  // Sinh số ngẫu nhiên từ 1-15
-  sys1 = rand() % 15 + 1;
-  do {
-  sys2 = rand() % 15 + 1;
-  } while (sys2 == sys1); // Đảm bảo 2 số không trùng nhau
-
-  printf("\nSo he thong: %02d %02d\n", sys1, sys2);
-
-  // Kiểm tra trúng bao nhiêu số
-  if (user1 == sys1 || user1 == sys2) match++;
-  if (user2 == sys1 || user2 == sys2) match++;
-
-  // Kết quả
-  if (match == 2) {
-    printf("Chuc mung ban da trung giai nhat!\n");
-  } else if (match == 1) {
-    printf("Chuc mung ban da trung giai nhi!\n");
-  } else {
-    printf("Chuc ban may man lan sau!\n");
-  }
+    if ((so1 == g1 && so2 == g2) || (so1 == g2 && so2 == g1))
+        printf("Chuc mung ban da trung giai nhat!\n");
+    else if (so1 == g1 || so1 == g2 || so2 == g1 || so2 == g2)
+        printf("Chuc mung ban da trung giai nhi!\n");
+    else
+        printf("Chuc ban may man lan sau!\n");
 }
-void cn10() { printf(">> Dang xu ly chuc nang 10: Tinh toan phan so...\n"); }
+void cn10() {
+  printf(">> Dang xu ly chuc nang 10: Tinh toan phan so...\n");
+PhanSo ps1, ps2, kq;
+
+    printf("Nhap phan so thu nhat (tu mau): ");
+    scanf("%d %d", &ps1.tu, &ps1.mau);
+    printf("Nhap phan so thu hai (tu mau): ");
+    scanf("%d %d", &ps2.tu, &ps2.mau);
+
+    // Tổng
+    kq.tu = ps1.tu * ps2.mau + ps2.tu * ps1.mau;
+    kq.mau = ps1.mau * ps2.mau;
+    kq = rutGon(kq);
+    printf("Tong: %d/%d\n", kq.tu, kq.mau);
+
+    // Hiệu
+    kq.tu = ps1.tu * ps2.mau - ps2.tu * ps1.mau;
+    kq.mau = ps1.mau * ps2.mau;
+    kq = rutGon(kq);
+    printf("Hieu: %d/%d\n", kq.tu, kq.mau);
+
+    // Tích
+    kq.tu = ps1.tu * ps2.tu;
+    kq.mau = ps1.mau * ps2.mau;
+    kq = rutGon(kq);
+    printf("Tich: %d/%d\n", kq.tu, kq.mau);
+
+    // Thương
+    kq.tu = ps1.tu * ps2.mau;
+    kq.mau = ps1.mau * ps2.tu;
+    kq = rutGon(kq);
+    printf("Thuong: %d/%d\n", kq.tu, kq.mau);
+}
 
 // ================== XỬ LÝ TÍNH TOÁN ===================
 
@@ -296,15 +368,18 @@ bool soNguyenTo(int num) {
     return true;
 }
 
-int uocSoChung(int a, int b) {
+int uscln(int a, int b) {
+    a = abs(a);
+    b = abs(b);
     while (b != 0) {
-        int temp = b;
-        b = a % b;
-        a = temp;
+        int r = a % b;
+        a = b;
+        b = r;
     }
     return a;
 }
 
-int boiSoChung(int a, int b) {
-    return (a * b) / uocSoChung(a, b);
+int bscnn(int a, int b) {
+    return abs(a * b) / uscln(a, b);
 }
+
